@@ -7,7 +7,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "lint": "eslint .",
-    "test": "mocha --watch *.spec.js"
+    "test": "mocha --watch tests/*.spec.js tests/**/*.spec.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/TheOmegaBlack/Chingu-TeamBear6#readme",
   "dependencies": {
     "express": "^4.16.2",
+    "mongoose": "^5.0.7",
     "wayt-frontend": "chingu-voyage4/Bears-Team-6#develop"
   },
   "devDependencies": {
