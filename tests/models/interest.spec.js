@@ -6,7 +6,6 @@ const { expect } = chai
 describe('Interest model', () => {
   it('should be invalid if name empty', () => {
     const interest = new Interest()
-
     interest.validate((err) => {
       expect(err.errors.name).to.exist
       // done()
