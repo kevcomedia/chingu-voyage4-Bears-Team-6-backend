@@ -5,5 +5,7 @@ const port = process.env.PORT || 3000;
 app.set('port', port);
 
 const server = http.createServer(app);
-const io = require('./websocket')(server);
+
+require('./websocket')(server);
+
 server.listen(port);
