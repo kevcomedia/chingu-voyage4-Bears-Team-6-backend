@@ -1,16 +1,16 @@
 var chai = require('chai');
 var chaiHttp = require('chai-http');
-var server = require('./app');
-var should = chai.should();
+var server = require('../app');
+var expect = chai.expect;
 
 chai.use(chaiHttp);
 
 describe('GET /', () => {
-  it('should response with status 200', (done) => {
+  it('should response without errors', (done) => {
     chai.request(server)
       .get('/')
       .end((err, res) => {
-        res.should.have.status(200);
+        expect(err).to.be.null;
         done();
       })
   })
