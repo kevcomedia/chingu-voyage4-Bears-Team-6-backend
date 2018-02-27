@@ -4,7 +4,6 @@ module.exports = (server) => {
     
     //emit timestamp every 10 sec
     nsp.on('connection', function (socket) { 
-        console.log("connected");
         nsp.emit('timestamp', Date.now());
         setInterval(function () {
             nsp.emit('timestamp', Date.now());
