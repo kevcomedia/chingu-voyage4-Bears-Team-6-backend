@@ -1,11 +1,11 @@
-const http = require('http');
-const app = require('./app');
+const http = require('http')
+const app = require('./app')
 
-const port = process.env.PORT || 3000;
-app.set('port', port);
+const port = process.env.PORT || 3000
+app.set('port', port)
 
-const server = http.createServer(app);
+const server = http.createServer(app)
 
-require('./websocket')(server);
+require('./websocket')(server)
 
-server.listen(port);
+server.listen(port)

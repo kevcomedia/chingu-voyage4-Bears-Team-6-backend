@@ -1,3 +1,60 @@
 {
-    "extends": "airbnb-base"
+  "extends": "airbnb-base",
+  "plugins": [
+    "import",
+    "chai-friendly"
+  ],
+  "env": {
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    //Possible Errors
+    "no-console": "error",
+    "no-unexpected-multiline": "error",
+
+    // Best Practices
+    "no-unused-expressions": 0,
+    "chai-friendly/no-unused-expressions": 2,
+    "consistent-return": "off",
+    "class-methods-use-this": "off",
+    "dot-location": ["error", "property"],
+    "no-implicit-globals": "error",
+    "no-invalid-this": "error",
+    "no-param-reassign": ["error", { "props": false }],
+    "no-unmodified-loop-condition": "error",
+    "no-useless-call": "error",
+
+    // Variables
+    "no-catch-shadow": "error",
+    "no-label-var": "error",
+    "no-shadow": "off",
+    "no-undef-init": "error",
+    "no-use-before-define": ["error", "nofunc"],
+    "no-unused-vars": ["error", { "args": "none" }],
+
+    // Stylistic Issues
+    "linebreak-style": ["error", "unix"],
+    "no-nested-ternary": "off",
+    "no-plusplus": "off",
+    "quote-props": ["error", "as-needed", { "numbers": true }],
+    "semi": ["error", "never"],
+
+    // ECMAScript 6
+    "arrow-parens": ["error", "always"],
+    "no-confusing-arrow": "off",
+    "constructor-super": "error",
+    "generator-star-spacing": ["error", "after"],
+    "no-this-before-super": "error",
+    "no-useless-rename": ["error", { "ignoreExport": true }],
+    "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }],
+    "prefer-template": "off",
+    "prefer-spread": "error",
+
+    // import
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "import/prefer-default-export": "off",
+    "import/no-mutable-exports": "off",
+    "import/no-dynamic-require": "off"
+  }
 }
