@@ -1,11 +1,11 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-var Schema = mongoose.Schema;
+const { Schema } = mongoose
 
-var InterestSchema = new Schema({
-  name: { type: String, required: true }
-});
+const InterestSchema = new Schema({
+  name: { type: String, required: true },
+})
 
-var InterestModel = mongoose.model('Interest', InterestSchema)
+const InterestModel = mongoose.model('Interest', InterestSchema)
 
 module.exports = InterestModel

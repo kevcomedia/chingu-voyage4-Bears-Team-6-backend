@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-var Schema = mongoose.Schema;
+const { Schema } = mongoose
 
-var MeetingSchema = new Schema({
+const MeetingSchema = new Schema({
   interests: { type: Schema.Types.ObjectId, ref: 'Interest' },
   members: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   leader: { type: Schema.Types.ObjectId, ref: 'User' },
@@ -10,11 +10,11 @@ var MeetingSchema = new Schema({
   address: String,
   geolocation: {
     longtitude: Number,
-    latitute: Number
+    latitute: Number,
   },
-  contact: String
-});
+  contact: String,
+})
 
-var MeetingModel = mongoose.model('Meeting', MeetingSchema)
+const MeetingModel = mongoose.model('Meeting', MeetingSchema)
 
-modules.exports = MeetingModel
+module.exports = MeetingModel

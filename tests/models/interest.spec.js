@@ -1,14 +1,15 @@
-var chai = require('chai');
-var Interest = require('../../models/interest')
-var expect = chai.expect;
+const chai = require('chai')
+const Interest = require('../../models/interest')
 
-describe('Interest model', function() {
-  it('should be invalid if name empty', function() {
-    var interest = new Interest();
+const { expect } = chai
 
-    interest.validate(function(err) {
-      expect(err.errors.name).to.exist;
-      done();
+describe('Interest model', () => {
+  it('should be invalid if name empty', () => {
+    const interest = new Interest()
+
+    interest.validate((err) => {
+      expect(err.errors.name).to.exist
+      // done()
     })
   })
-});
+})
