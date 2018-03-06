@@ -3,8 +3,6 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const routes = require('./routes')
 
-require('./config/database')
-
 const app = express()
 
 app.use(bodyParser.json())
