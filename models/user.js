@@ -38,6 +38,29 @@ UserSchema.pre('save', function hashPassword(next) {
   )
 })
 
+/**
+ * User#isCorrectPassword
+ * Accepts a password in plaintext, and returns a Promise that resolves to
+ * `true` if the password is indeed the user's password. Resolves to `false`
+ * otherwise.
+ *
+ * Parameters
+ * - password (string): the password to check
+ * Returns
+ * - Promise: resolves to the result of the check
+ */
+UserSchema.methods.isCorrectPassword = function isCorrectPassword(password) {
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(password, this.password, (err, isCorrect) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(isCorrect)
+      }
+    })
+  })
+}
+
 const UserModel = mongoose.model('User', UserSchema)
 
 module.exports = UserModel
