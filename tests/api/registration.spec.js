@@ -17,7 +17,7 @@ mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/test-weareyourteam')
 
 describe('User registration', () => {
-  const endpoint = '/api/users/register'
+  const endpoint = '/api/auth/register'
 
   before((done) => {
     async.parallel(
