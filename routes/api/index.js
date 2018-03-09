@@ -1,9 +1,10 @@
 const express = require('express')
+const passport = require('passport')
 const usersRoute = require('./users')
 
 const router = express.Router()
 
-router.use('/users', usersRoute)
+router.use('/users', passport.authenticate('jwt', { session: false }), usersRoute)
 
 router.use((req, res, next) => {
   const err = new Error('Not found')
