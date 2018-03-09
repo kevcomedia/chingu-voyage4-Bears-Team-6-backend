@@ -25,7 +25,7 @@
     "express": "^4.16.2",
     "mongoose": "^5.0.7",
     "socket.io": "^2.0.4",
-    "wayt-frontend": "chingu-voyage4/Bears-Team-6#develop"
+    "wayt-frontend": "chingu-voyage4/Bears-Team-6#current-sprint"
   },
   "devDependencies": {
     "async": "^2.6.0",
