@@ -8,7 +8,8 @@
     "dev": "nodemon index.js",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
-    "test": "mocha --exit tests/*.spec.js tests/**/*.spec.js"
+    "test": "mocha --exit tests/*.spec.js tests/**/*.spec.js",
+    "postinstall": "node install-frontend.js"
   },
   "repository": {
     "type": "git",
@@ -29,8 +30,7 @@
     "mongoose": "^5.0.7",
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.1",
-    "socket.io": "^2.0.4",
-    "wayt-frontend": "chingu-voyage4/Bears-Team-6#current-sprint"
+    "socket.io": "^2.0.4"
   },
   "devDependencies": {
     "chai": "^4.1.2",
