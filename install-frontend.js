@@ -22,17 +22,14 @@ const installFrontendScript = () => {
   printInfo('Cloning fresh frontend repo')
   execAndPrint(`git clone -b ${branchName} ${frontendGitUrl}`)
 
-  printInfo('Installing frontend')
-  execAndPrint(`cd ${dirName} && npm i && cd ..`)
+  // printInfo('Installing frontend')
+  // execAndPrint(`cd ${dirName} && npm i && cd ..`)
 
-  printInfo('Testing frontend')
-  execAndPrint(`cd ${dirName} && npm test && cd ..`)
+  // printInfo('Testing frontend')
+  // execAndPrint(`cd ${dirName} && npm test && cd ..`)
 
-  printInfo('Building frontend')
-  execAndPrint(`cd ${dirName} && npm run build && cd ..`)
-
-  printInfo('Building frontend')
-  execAndPrint(`cd ${dirName} && npm run build && cd ..`)
+  // printInfo('Building frontend')
+  // execAndPrint(`cd ${dirName} && npm run build && cd ..`)
 
   printInfo('Moving frontend')
   execAndPrint(`mv ./${dirName}/build ./static`)
