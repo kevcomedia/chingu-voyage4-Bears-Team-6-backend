@@ -46,7 +46,7 @@ passport.use('local-login', new LocalStrategy(
         else {
           user.isCorrectPassword(password)
             .then((isCorrect) => {
-              if(isCorrect) done(null, user)
+              if(isCorrect) return done(null, user)
 
               return done(null, false, { status:401, message: 'Incorrect password' })
             })
