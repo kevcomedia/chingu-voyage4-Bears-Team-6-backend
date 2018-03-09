@@ -9,8 +9,7 @@
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
     "test": "mocha --exit tests/*.spec.js tests/**/*.spec.js",
-    "postinstall": "node install-frontend.js",
-    "heroku-prebuild": "npm run postinstall"
+    "postinstall": "node install-frontend.js"
   },
   "repository": {
     "type": "git",
