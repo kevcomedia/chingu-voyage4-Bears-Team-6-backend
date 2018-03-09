@@ -41,12 +41,17 @@ passport.use('local-login', new LocalStrategy(
     User.findOne({ email })
       .exec()
       .then((user) => {
-        if (!user) return done(null, false, { message: 'Invalid email' })
+        if (!user) return done(null, false, { status:422, message: 'Incorrect email' })
 
-        // temporary - this will be change with comparing hash password
-        if (user.password !== password) return done(null, false, { message: 'Invalid password' })
+        else {
+          user.isCorrectPassword(password)
+            .then((isCorrect) => {
+              if(isCorrect) done(null, user)
 
-        return done(null, user)
+              return done(null, false, { status:401, message: 'Incorrect password' })
+            })
+            .catch((err) => done(err))
+        }        
       })
       .catch((err) => done(err))
   }),

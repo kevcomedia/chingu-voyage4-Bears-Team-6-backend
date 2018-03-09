@@ -4,7 +4,7 @@ function localLogin(req, res, next) {
   passport.authenticate('local-login', { session: false }, (err, user, info) => {
     if (err) return next(err)
 
-    if (!user) return res.send(info)
+    if (!user) return res.status(info.status).send(info)
 
     req.logIn(user, { session: false }, (err) => {
       if (err) return next(err)
