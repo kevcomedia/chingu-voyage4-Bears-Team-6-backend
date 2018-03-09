@@ -16,7 +16,7 @@ passport.use('local-signup', new LocalStrategy(
       User.findOne({ email })
         .exec()
         .then((user) => {
-          if (user) return done(null, false, { message: 'Email is already registered' })
+          if (user) return done(null, false, {status:422, message: 'Email is already registered' })
 
           // if there is no user with that email
           // create the user
@@ -41,7 +41,7 @@ passport.use('local-login', new LocalStrategy(
     User.findOne({ email })
       .exec()
       .then((user) => {
-        if (!user) return done(null, false, { status:422, message: 'Incorrect email' })
+        if (!user) return done(null, false, { status:401, message: 'Incorrect email' })
 
         else {
           user.isCorrectPassword(password)
