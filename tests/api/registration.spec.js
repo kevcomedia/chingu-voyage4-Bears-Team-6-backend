@@ -33,7 +33,7 @@ describe('User registration', () => {
           server.listen(3001, callback)
         },
       ],
-      done
+      done,
     )
   })
 
@@ -51,7 +51,7 @@ describe('User registration', () => {
           server.close(callback)
         },
       ],
-      done
+      done,
     )
   })
 
@@ -107,7 +107,7 @@ describe('User registration', () => {
           .to.have.property('message')
           .that.equals('Email is already registered')
         done()
-      }
+      },
     )
   })
 
