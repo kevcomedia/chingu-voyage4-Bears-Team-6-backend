@@ -28,7 +28,7 @@
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.1",
     "socket.io": "^2.0.4",
-    "wayt-frontend": "chingu-voyage4/Bears-Team-6#develop"
+    "wayt-frontend": "chingu-voyage4/Bears-Team-6#current-sprint"
   },
   "devDependencies": {
     "async": "^2.6.0",
