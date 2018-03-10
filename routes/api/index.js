@@ -1,9 +1,11 @@
 const express = require('express')
 const passport = require('passport')
 const usersRoute = require('./users')
+const authRoute = require('./auth')
 
 const router = express.Router()
 
+router.use('/auth', authRoute)
 router.use('/users', passport.authenticate('jwt', { session: false }), usersRoute)
 
 router.use((req, res, next) => {
