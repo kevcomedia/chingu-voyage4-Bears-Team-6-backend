@@ -16,7 +16,7 @@ passport.use('local-signup', new LocalStrategy(
       User.findOne({ email })
         .exec()
         .then((user) => {
-          if (user) return done(null, false, {status:422, message: 'Email is already registered' })
+          if (user) return done(null, false, { status: 422, message: 'Email is already registered' })
 
           // if there is no user with that email
           // create the user
@@ -41,17 +41,15 @@ passport.use('local-login', new LocalStrategy(
     User.findOne({ email })
       .exec()
       .then((user) => {
-        if (!user) return done(null, false, { status:401, message: 'Incorrect email' })
+        if (!user) return done(null, false, { status: 401, message: 'Incorrect email' })
 
-        else {
-          user.isCorrectPassword(password)
-            .then((isCorrect) => {
-              if(isCorrect) return done(null, user)
+        user.isCorrectPassword(password)
+          .then((isCorrect) => {
+            if (isCorrect) return done(null, user)
 
-              return done(null, false, { status:401, message: 'Incorrect password' })
-            })
-            .catch((err) => done(err))
-        }        
+            return done(null, false, { status: 401, message: 'Incorrect password' })
+          })
+          .catch((err) => done(err))
       })
       .catch((err) => done(err))
   }),
@@ -59,7 +57,7 @@ passport.use('local-login', new LocalStrategy(
 
 const options = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: 'secret', // We should put it to .env
+  secretOrKey: process.env.SECRET_KEY,
 }
 
 passport.use(new JwtStrategy(options, (jwtPayload, done) => {

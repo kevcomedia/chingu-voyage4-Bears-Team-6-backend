@@ -2,6 +2,7 @@
 .idea/
 
 node_modules/
+.env
 
 # Frontend build and repo
 static
