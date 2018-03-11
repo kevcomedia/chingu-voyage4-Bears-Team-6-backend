@@ -57,7 +57,7 @@ passport.use('local-login', new LocalStrategy(
 
 const options = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: process.env.SECRET_KEY,
+  secretOrKey: process.env.SECRET,
 }
 
 passport.use(new JwtStrategy(options, (jwtPayload, done) => {
