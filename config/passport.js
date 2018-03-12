@@ -1,9 +1,14 @@
 const LocalStrategy = require('passport-local').Strategy
 const passport = require('passport')
 const passportJwt = require('passport-jwt')
+const jwt = require('jsonwebtoken')
 const User = require('../models/user')
 
 const { ExtractJwt, Strategy: JwtStrategy } = passportJwt
+const jwtOptions = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: 'secret', // We should put it to .env
+}
 
 passport.use('local-signup', new LocalStrategy(
   {
@@ -16,14 +21,17 @@ passport.use('local-signup', new LocalStrategy(
       User.findOne({ email })
         .exec()
         .then((user) => {
-          if (user) return done(null, false, {status:422, message: 'Email is already registered' })
+          if (user) return done(null, false, { status: 422, message: 'Email is already registered' })
 
           // if there is no user with that email
           // create the user
           const { name, email, password } = req.body
 
           User.create({ name, email, password })
-            .then((user) => done(null, user))
+            .then((user) => {
+              const token = jwt.sign({ id: user.id }, jwtOptions.secretOrKey)
+              done(null, { user, token })
+            })
             .catch((err) => done(err))
         })
         .catch((err) => done(err))
@@ -41,28 +49,23 @@ passport.use('local-login', new LocalStrategy(
     User.findOne({ email })
       .exec()
       .then((user) => {
-        if (!user) return done(null, false, { status:401, message: 'Incorrect email' })
+        if (!user) return done(null, false, { status: 401, message: 'Incorrect email' })
 
-        else {
-          user.isCorrectPassword(password)
-            .then((isCorrect) => {
-              if(isCorrect) return done(null, user)
 
-              return done(null, false, { status:401, message: 'Incorrect password' })
-            })
-            .catch((err) => done(err))
-        }        
+        user.isCorrectPassword(password)
+          .then((isCorrect) => {
+            const token = jwt.sign({ id: user.id }, jwtOptions.secretOrKey)
+            if (isCorrect) return done(null, { user, token })
+
+            return done(null, false, { status: 401, message: 'Incorrect password' })
+          })
+          .catch((err) => done(err))
       })
       .catch((err) => done(err))
   }),
 ))
 
-const options = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: 'secret', // We should put it to .env
-}
-
-passport.use(new JwtStrategy(options, (jwtPayload, done) => {
+passport.use(new JwtStrategy(jwtOptions, (jwtPayload, done) => {
   User.findById(jwtPayload.id)
     .exec()
     .then((user) => {
