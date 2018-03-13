@@ -1,8 +1,6 @@
 const chai = require('chai')
 const chaiHttp = require('chai-http')
-const jwt = require('jsonwebtoken')
 const server = require('../../app')
-const User = require('../../models/user')
 
 const { expect } = chai
 
@@ -30,7 +28,7 @@ describe('GET /', () => {
     const token = '...'
     chai.request(server)
       .get('/api/users')
-      .set( 'Authorization', `Bearer ${token}` )
+      .set('Authorization', `Bearer ${token}`)
       .end((err, res) => {
         expect(res).to.have.status(200)
         done()
