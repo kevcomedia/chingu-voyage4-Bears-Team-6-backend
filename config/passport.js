@@ -1,9 +1,14 @@
 const LocalStrategy = require('passport-local').Strategy
 const passport = require('passport')
 const passportJwt = require('passport-jwt')
+const jwt = require('jsonwebtoken')
 const User = require('../models/user')
 
 const { ExtractJwt, Strategy: JwtStrategy } = passportJwt
+const jwtOptions = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: process.env.JWT_SECRET || 'secret', // We should put it to .env
+}
 
 passport.use('local-signup', new LocalStrategy(
   {
@@ -23,7 +28,10 @@ passport.use('local-signup', new LocalStrategy(
           const { name, email, password } = req.body
 
           User.create({ name, email, password })
-            .then((user) => done(null, user))
+            .then((user) => {
+              const token = jwt.sign({ id: user.id }, jwtOptions.secretOrKey)
+              done(null, { user, token })
+            })
             .catch((err) => done(err))
         })
         .catch((err) => done(err))
@@ -45,7 +53,8 @@ passport.use('local-login', new LocalStrategy(
 
         user.isCorrectPassword(password)
           .then((isCorrect) => {
-            if (isCorrect) return done(null, user)
+            const token = jwt.sign({ id: user.id }, jwtOptions.secretOrKey)
+            if (isCorrect) return done(null, { user, token })
 
             return done(null, false, { status: 401, message: 'Incorrect password' })
           })
@@ -55,12 +64,7 @@ passport.use('local-login', new LocalStrategy(
   }),
 ))
 
-const options = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: process.env.SECRET,
-}
-
-passport.use(new JwtStrategy(options, (jwtPayload, done) => {
+passport.use(new JwtStrategy(jwtOptions, (jwtPayload, done) => {
   User.findById(jwtPayload.id)
     .exec()
     .then((user) => {
