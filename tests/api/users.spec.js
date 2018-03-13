@@ -16,7 +16,8 @@ describe('GET /', () => {
   })
 
   it('should return status 401 if no token provided', (done) => {
-    chai.request(server)
+    chai
+      .request(server)
       .get('/api/users')
       .end((err, res) => {
         expect(err).to.have.status(401)
@@ -26,7 +27,8 @@ describe('GET /', () => {
 
   it('should return all users if provide right token', (done) => {
     const token = '...'
-    chai.request(server)
+    chai
+      .request(server)
       .get('/api/users')
       .set('Authorization', `Bearer ${token}`)
       .end((err, res) => {

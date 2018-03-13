@@ -12,10 +12,12 @@ const UserSchema = new Schema({
     longtitude: Number,
     latitute: Number,
   },
-  interests: [{
-    _id: { type: Schema.Types.ObjectId, ref: 'Interest' },
-    wantsToBeLeader: Boolean,
-  }],
+  interests: [
+    {
+      _id: { type: Schema.Types.ObjectId, ref: 'Interest' },
+      wantsToBeLeader: Boolean,
+    },
+  ],
 })
 
 UserSchema.pre('save', function hashPassword(next) {

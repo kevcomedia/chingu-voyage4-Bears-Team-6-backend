@@ -56,7 +56,8 @@ describe('User registration', () => {
   })
 
   it('registers successfully', (done) => {
-    chai.request(server)
+    chai
+      .request(server)
       .post(endpoint)
       .send({
         name: 'Sample',
@@ -66,7 +67,9 @@ describe('User registration', () => {
       .then((res) => {
         expect(res).to.have.status(201)
         expect(res).to.be.a.json
-        expect(res.body).to.have.property('success').that.equals(true)
+        expect(res.body)
+          .to.have.property('success')
+          .that.equals(true)
         expect(res.body)
           .to.have.property('email')
           .that.equals('sample@sample.com')
@@ -91,18 +94,28 @@ describe('User registration', () => {
       [
         // First (successful) registration
         (callback) => {
-          chai.request(server).post(endpoint).send(dummyUserInfo).end(callback)
+          chai
+            .request(server)
+            .post(endpoint)
+            .send(dummyUserInfo)
+            .end(callback)
         },
         // Registration attempt with same email
         (res, callback) => {
-          chai.request(server).post(endpoint).send(dummyUserInfo).end(callback)
+          chai
+            .request(server)
+            .post(endpoint)
+            .send(dummyUserInfo)
+            .end(callback)
         },
       ],
       (err) => {
         expect(err).to.exist
         expect(err).to.have.status(422)
         expect(err).to.be.a.json
-        expect(err.body).to.have.property('success').that.equals(false)
+        expect(err.body)
+          .to.have.property('success')
+          .that.equals(false)
         expect(err.body)
           .to.have.property('message')
           .that.equals('Email is already registered')
@@ -112,7 +125,8 @@ describe('User registration', () => {
   })
 
   it('rejects registration if password is less than 10 characters long', (done) => {
-    chai.request(server)
+    chai
+      .request(server)
       .post(endpoint)
       .send({
         name: 'Sample',
@@ -122,7 +136,9 @@ describe('User registration', () => {
       .catch((err) => {
         expect(err).to.have.status(422)
         expect(err).to.be.a.json
-        expect(err.body).to.have.property('success').that.equals(false)
+        expect(err.body)
+          .to.have.property('success')
+          .that.equals(false)
         expect(err.body)
           .to.have.property('message')
           .that.equals('Password should be at least 10 characters long')
@@ -132,7 +148,8 @@ describe('User registration', () => {
   })
 
   it('rejects registration if email is blank', (done) => {
-    chai.request(server)
+    chai
+      .request(server)
       .post(endpoint)
       .send({
         name: 'Sample',
@@ -142,7 +159,9 @@ describe('User registration', () => {
       .catch((err) => {
         expect(err).to.have.status(422)
         expect(err).to.be.a.json
-        expect(err.body).to.have.property('success').that.equals(false)
+        expect(err.body)
+          .to.have.property('success')
+          .that.equals(false)
         expect(err.body)
           .to.have.property('message')
           .that.equals('Email cannot be blank')
@@ -164,7 +183,8 @@ describe('User registration', () => {
     ]
     invalidEmails.forEach((invalidEmail) => {
       it(`rejects registering '${invalidEmail}'`, (done) => {
-        chai.request(server)
+        chai
+          .request(server)
           .post(endpoint)
           .send({
             name: 'Sample',
@@ -174,7 +194,9 @@ describe('User registration', () => {
           .catch((err) => {
             expect(err).to.have.status(422)
             expect(err).to.be.a.json
-            expect(err.body).to.have.property('success').that.equals(false)
+            expect(err.body)
+              .to.have.property('success')
+              .that.equals(false)
             expect(err.body)
               .to.have.property('message')
               .that.equals(`${invalidEmail} is not a valid email address`)

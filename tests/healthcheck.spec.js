@@ -8,7 +8,8 @@ chai.use(chaiHttp)
 
 describe('GET /', () => {
   it('should response without errors', (done) => {
-    chai.request(server)
+    chai
+      .request(server)
       .get('/')
       .end((err, res) => {
         expect(err).to.be.null
