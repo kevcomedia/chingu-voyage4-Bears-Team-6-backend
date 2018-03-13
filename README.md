@@ -18,9 +18,14 @@ mongoDB `^3`
 
 Do we need this section?
 
-## Folder structure
+## Project structure
 
-Folder structure
+- **`config`** database, passport, etc.
+- **`controllers`** controller files
+- **`models`** Mongoose models
+- **`routes`** router files
+- **`static`** auto-generated front-end files; should not be modified manually
+- **`tests`** tests for the API, models, etc
 
 ## API
 
