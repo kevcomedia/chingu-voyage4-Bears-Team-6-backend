@@ -7,7 +7,7 @@ const User = require('../models/user')
 const { ExtractJwt, Strategy: JwtStrategy } = passportJwt
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: 'secret', // We should put it to .env
+  secretOrKey: process.env.JWT_SECRET || 'secret', // We should put it to .env
 }
 
 passport.use('local-signup', new LocalStrategy(
@@ -50,7 +50,6 @@ passport.use('local-login', new LocalStrategy(
       .exec()
       .then((user) => {
         if (!user) return done(null, false, { status: 401, message: 'Incorrect email' })
-
 
         user.isCorrectPassword(password)
           .then((isCorrect) => {
