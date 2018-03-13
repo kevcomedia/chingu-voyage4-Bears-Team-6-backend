@@ -8,9 +8,15 @@ Backend repository for https://github.com/chingu-voyage4/Bears-Team-6
 
 TOC
 
+## Prerequisites
+
+node.js `^8`
+npm `^5`
+mongoDB `^3`
+
 ## Installation
 
-How to install, prerequisites, etc.
+Do we need this section?
 
 ## Folder structure
 
