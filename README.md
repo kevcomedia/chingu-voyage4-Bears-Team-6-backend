@@ -10,9 +10,11 @@ TOC
 
 ## Prerequisites
 
-node.js `^8`
-npm `^5`
-mongoDB `^3`
+| Prerequisite | Version |
+| ------------ | ------- |
+| node.js      | `^8`    |
+| npm          | `^5`    |
+| mongoDB      | `^3`    |
 
 ## Installation
 
@@ -20,12 +22,14 @@ Do we need this section?
 
 ## Project structure
 
-- **`config`** database, passport, etc.
-- **`controllers`** controller files
-- **`models`** Mongoose models
-- **`routes`** router files
-- **`static`** auto-generated front-end files; should not be modified manually
-- **`tests`** tests for the API, models, etc
+| Directory         | Description                                                     |
+| ----------------- | --------------------------------------------------------------- |
+| **`config`**      | database, passport, etc.                                        |
+| **`controllers`** | controller files                                                |
+| **`models`**      | Mongoose models                                                 |
+| **`routes`**      | router files                                                    |
+| **`static`**      | auto-generated front-end files; should not be modified manually |
+| **`tests`**       | tests for the API, models, etc                                  |
 
 ## API
 
