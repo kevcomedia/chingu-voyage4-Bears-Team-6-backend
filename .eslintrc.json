@@ -1,14 +1,20 @@
 {
-  "extends": "airbnb-base",
+  "extends": [
+    "airbnb-base",
+    "prettier"
+  ],
   "plugins": [
     "import",
-    "chai-friendly"
+    "chai-friendly",
+    "prettier"
   ],
   "env": {
     "node": true,
     "mocha": true
   },
   "rules": {
+    "prettier/prettier": "error",
+
     //Possible Errors
     "no-console": "error",
     "no-unexpected-multiline": "error",
